@@ -106,7 +106,7 @@ Post alignment files with ancestral alleles and callability (On Google Drive in 
   These files are outputs from the “add_ancestral_and_masking_info.py” script that contain information detailed in the description of that script. The files are named as “reformatted_alignment_with_callability_chr${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.txt”
 find_sites_that_differ.py
   For various purposes, I created a Python script that goes through these post alignment files and finds and outputs all positions within the post alignment files where one or all of the three nucleotides needed to calculate the ancestral nucleotide are different.
-all_sites_that_differ.txt
+all_sites_that_differ.txt (On Google Drive)
   Using the script “find_sites_that_differ.py”, I went through each of the post alignment files, found all vervet positions where the human and vervet nucleotides differed, and compiled the positions where that was the case into a single file. This file is used in the calculation of vervet divergence.
 find_gene_duplicates_and_incomplete_alignments.py
   This is a Python script designed to output various characteristics about all of the aligned regions that encompass the 248 homologous vervet exon regions. It works by taking the start and end position of the exon, finds which vervet sequence(s) these exons are a part of in the alignment files (13_primates.epo files), and then outputs the start and end positions of those vervet regions, the start and end positions of the corresponding aligned human sequences, and the number of human, vervet, and marmoset listings in that alignment group. Note that some of the information output by this script goes unused, but I see no region to spend time changing it if I can easily extract the particular things I need.
@@ -128,14 +128,20 @@ chimp_all_exons_divergence.txt
   This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for all exons in the chimp UCSC annotation. 
 chimp_homo_intergenic_divergence.txt
   This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous chimp exons.
-find_divergence_vervet.py
-  This is a Python script that calculates divergence rate values for vervets. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
+find_divergence_vervet_exons.py
+  This is a Python script that calculates divergence rate values for vervet exons specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
 vervet_homo_exons_divergence.txt
-   This is an output file from the “find_divergence_vervet.py” script. It contains divergence values for all 248 homologous vervet exons.
+  This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all 248 homologous vervet exons.
 vervet_all_exons_divergence.txt
-  This is an output file from the “find_divergence_vervet.py” script. It contains divergence values for all exons in the vervet UCSC annotation. 
+  This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all exons in the vervet UCSC annotation. 
+find_divergence_vervet_intergenic.py
+  This is a Python script that calculates divergence rate values for vervet intergenic regions specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
 vervet_homo_intergenic_divergence.txt
-  This is an output file from the “find_divergence_vervet.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous vervet exons.
+  This is an output file from the “find_divergence_vervet_intergenic.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous vervet exons.
+pull_out_intergenic_aligned_sites.py
+  This is a Python script that scans through all of the post alignment files with the ancestral allele already calculated and the callability of that site already calculated. Any sites that fall within any of the 5' or 3' intergenic regions flanking the 248 identified homologous vervet exons are output. This is done for two reasons. The first is that, unlike for the exonic regions, if part or all of a flanking intergenic region is missing alignment data, the entire exon set does not get immediately thrown out. Thus, we need to know what sites are or are not present in the alignment. This requires that all sites in a region be read in. Second, rather than read through all of the reformatted alignment files which would take forever and consume an enormous amount of memory, this file is created to be much easier and quicker to read in.
+pull_out_intergenic_aligned_sites.txt (On Google Drive)
+  This is an output file from the “pull_out_intergenic_aligned_sites.py” script.
 
 
 
