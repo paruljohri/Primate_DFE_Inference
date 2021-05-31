@@ -5,7 +5,8 @@
 #Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions
 #have none or extremely minor differences, these chimp and vervet divergence calculation 
 #scripts are substantially different due to how they go about calculating whether or 
-#not a site is diverged.
+#not a site is diverged in addition to the vervet portion being split into separate scripts for 
+#intergenic and exonic regions.
 
 #This script is currently designed to be run locally and will require path changes on the user's part to the variables:
 #'mask_file' with input files 'chr' + chr_num + '.mask.fa'
@@ -64,7 +65,7 @@ with open(divergence_file, 'r') as f:
         ancestral_nuc = split[3]
 
         if ancestral_nuc in hard:
-            if chimp_nuc != ancestral_nuc:
+            if chimp_nuc.upper() != ancestral_nuc.upper():
                 d_div[total_position] = 'H'
         elif ancestral_nuc in soft:
             if chimp_nuc.lower() != ancestral_nuc.lower():
@@ -124,8 +125,8 @@ def get_divergence(chr_num, start_pos, end_pos, true_denominator):
 
 """For HOMO regions"""
 
-find_for = 'exons'
-# find_for = 'intergenic'
+# find_for = 'exons'
+find_for = 'intergenic'
 print('ran for: ' + find_for)
 
 region_data_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/248_homo_exons_reference_with_intergenic_lengths.txt'
@@ -167,7 +168,7 @@ if find_for == 'exons':
 if find_for == 'intergenic':
     result_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/chimp_homo_intergenic_divergence.txt'
     results = open(result_file, 'w+')
-    results.write('name' + '\t' + 'exon' + '\t' + 'chr' + '\t' + 'strand' + '\t' + 'intergenic_5p_start' + '\t' + 'intergenic_5p_end' + '\t' + 'intergenic_3p_start' + '\t' + 'intergenic_3p_end' + '\t' + 'hard_div_5p' + '\t' + '5p_callability' + '\t' + 'hard_div_3p' + '\t' + '3p_callability' + '\n')
+    results.write('name' + '\t' + 'exon' + '\t' + 'chr' + '\t' + 'strand' + '\t' + 'intergenic_5p_start' + '\t' + 'intergenic_5p_end' + '\t' + 'intergenic_3p_start' + '\t' + 'intergenic_3p_end' + '\t' + 'hard_div_5p' + '\t' + 'soft_div_5p' + '\t' + '5p_callability' + '\t' + 'hard_div_3p' + '\t' + 'soft_div_3p' + '\t' + '3p_callability' + '\n')
 
     total_num_lines = len(region_data)
     for w in range(0, total_num_lines):
@@ -209,116 +210,54 @@ if find_for == 'intergenic':
         soft_div_3p = t_div_3p[2]
         soft_div_denom_3p = t_div_3p[3]
             
-        results.write(name + '\t' + exon + '\t' + chr_num + '\t' + strand + '\t' + start_5p + '\t' + end_5p + '\t' + start_3p + '\t' + end_3p + '\t' + str(hard_div_5p) + '\t' + str(true_denominator_5p) + '\t' + str(hard_div_3p) + '\t' + str(true_denominator_3p) + '\n') 
+        results.write(name + '\t' + exon + '\t' + chr_num + '\t' + strand + '\t' + start_5p + '\t' + end_5p + '\t' + start_3p + '\t' + end_3p + '\t' + str(hard_div_5p) + '\t' + str(soft_div_5p) + '\t' + str(true_denominator_5p) + '\t' + str(hard_div_3p) + '\t' + str(soft_div_3p) + '\t' + str(true_denominator_3p) + '\n') 
     results.close()
     
 
 
 
 
-#This section goes through all exons in the chimp UCSC exon or all intergenic regions 
-#in the "vervet_all_intergenic_lengths.txt" file and calculates the 
+#This section goes through all exons in the chimp UCSC exon annotation and calculates the 
 #hard divergence value, soft divergence value, and number of callable sites for a 
-#particular region. This can be performed for either exons on intergenic regions 
-#by changing the "find_for" variable to either 'exons' or 'intergenic'.
+#particular region. 
 
 """For ALL exons"""
+exon_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/panTro2.ensGenes/panTro2.ensGenes.txt'
+with open(exon_file, 'r') as g:
+    exon_data = g.readlines()[1:]
 
-find_for = 'exons'
-# find_for = 'intergenic'
-print('ran for: ' + find_for)
+result_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/chimp_all_exons_divergence.txt'
+results = open(result_file, 'w+')
+results.write('name' + '\t' + 'chr' + '\t' + 'strand' + '\t' + 'start' + '\t' + 'end' + '\t' + 'hard_div' + '\t' + 'soft_div' + '\t' + 'callability' + '\n')
 
-if find_for == 'exons':
-    exon_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/panTro2.ensGenes/panTro2.ensGenes.txt'
-    with open(exon_file, 'r') as g:
-        exon_data = g.readlines()[1:]
+total_num_lines = len(exon_data)
+for w in range(0, total_num_lines):
+    line = exon_data[w].strip('\n')
+    split = line.split()
+    name = split[1]
+    chr_num = split[2]
+    strand = split[3]
+    starts = split[9].split(',')[0 : -1]
+    starts_int = [int(j) for j in starts]
+    ends = split[10].split(',')[0 : -1]
+    ends_int = [int(j) for j in ends]
+    if chr_num == 'chrX' or chr_num == 'chrY' or chr_num == 'chrUn' or chr_num == 'chrM' or 'random' in chr_num:
+        continue
+    else:
+        for j in range(0, len(ends_int)):
+            start_pos = starts_int[j]
+            end_pos = ends_int[j]
 
-    result_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/chimp_all_exons_divergence.txt'
-    results = open(result_file, 'w+')
-    results.write('name' + '\t' + 'chr' + '\t' + 'strand' + '\t' + 'start' + '\t' + 'end' + '\t' + 'soft_div' + '\t' + 'callability' + '\n')
-
-    total_num_lines = len(exon_data)
-    for w in range(0, total_num_lines):
-        line = exon_data[w].strip('\n')
-        split = line.split()
-        name = split[1]
-        chr_num = split[2]
-        strand = split[3]
-        starts = split[9].split(',')[0 : -1]
-        starts_int = [int(j) for j in starts]
-        ends = split[10].split(',')[0 : -1]
-        ends_int = [int(j) for j in ends]
-        if chr_num == 'chrX' or chr_num == 'chrY' or chr_num == 'chrUn' or chr_num == 'chrM' or 'random' in chr_num:
-            continue
-        else:
-            for j in range(0, len(ends_int)):
-                start_pos = starts_int[j]
-                end_pos = ends_int[j]
-
-                chr_num_stripped = chr_num.strip('chr')
-                cut_out = all_mask_data[chr_num_stripped][start_pos - 1 : end_pos]
-                true_denominator = cut_out.count('0')
-
-                t_div = get_divergence(chr_num, int(start_pos), int(end_pos), true_denominator)
-                hard_div = t_div[0]
-                hard_div_denom = t_div[1]
-                soft_div = t_div[2]
-                soft_div_denom = t_div[3]
-
-                results.write(name + '_ex' + str(j + 1) + '\t' + chr_num + '\t' + strand + '\t' + str(start_pos) + '\t' + str(end_pos) + '\t' + str(soft_div) + '\t' + str(true_denominator) + '\n')
-    results.close()
-
-    
-
-if find_for == 'intergenic':
-    intergenic_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/chimp_all_intergenic_lengths.txt'
-    with open(intergenic_file, 'r') as g:
-        intergenic_data = g.readlines()[1:]
-
-    result_file = 'C:/Users/Kellen/Downloads/primate_dfe_project/chimp_and_vervet_data/chimp_all_intergenic_divergence.txt'
-    results = open(result_file, 'w+')
-    results.write('name' + '\t' + 'exon' + '\t' + 'chr' + '\t' + 'strand' + '\t' + 'intergenic_5p_start' + '\t' + 'intergenic_5p_end' + '\t' + 'intergenic_3p_start' + '\t' + 'intergenic_3p_end' + '\t' + 'soft_div_5p' + '\t' + '5p_callability' + '\t' + 'soft_div_3p' + '\t' + '3p_callability' + '\n')
-
-    total_num_lines = len(intergenic_data)
-    for w in range(0, total_num_lines):
-        line = intergenic_data[w].strip('\n')
-        split = line.split()
-        name = split[1]
-        exon = split[2]
-        chr_num = split[3]
-        strand = split[4]
-        start_5p = split[10]
-        end_5p = split[11]
-        len_5p = split[12]
-        start_3p = split[13]
-        end_3p = split[14]
-        len_3p = split[15]
-        
-        if start_5p == 'NA' or end_5p == 'NA' or len_5p == 'NA':
-            t_div_5p = ['NA', 'NA', 'NA', 'NA']
-        else:
             chr_num_stripped = chr_num.strip('chr')
-            cut_out = all_mask_data[chr_num_stripped][int(start_5p) - 1 : int(end_5p)]
-            true_denominator_5p = cut_out.count('0')
-            t_div_5p = get_divergence(chr_num, int(start_5p), int(end_5p), true_denominator_5p)
-        hard_div_5p = t_div_5p[0]
-        hard_div_denom_5p = t_div_5p[1]
-        soft_div_5p = t_div_5p[2]
-        soft_div_denom_5p = t_div_5p[3]
+            cut_out = all_mask_data[chr_num_stripped][start_pos - 1 : end_pos]
+            true_denominator = cut_out.count('0')
 
-        if start_3p == 'NA' or end_3p == 'NA' or len_3p == 'NA':
-            t_div_3p = ['NA', 'NA', 'NA', 'NA']
-        else:
-            chr_num_stripped = chr_num.strip('chr')
-            cut_out = all_mask_data[chr_num_stripped][int(start_3p) - 1 : int(end_3p)]
-            true_denominator_3p = cut_out.count('0')
-            t_div_3p = get_divergence(chr_num, int(start_3p), int(end_3p), true_denominator_3p)
-        hard_div_3p = t_div_3p[0]
-        hard_div_denom_3p = t_div_3p[1]
-        soft_div_3p = t_div_3p[2]
-        soft_div_denom_3p = t_div_3p[3]
-            
-        results.write(name + '\t' + exon + '\t' + chr_num + '\t' + strand + '\t' + start_5p + '\t' + end_5p + '\t' + start_3p + '\t' + end_3p + '\t' + str(soft_div_5p) + '\t' + str(true_denominator_5p) + '\t' + str(soft_div_3p) + '\t' + str(true_denominator_3p) + '\n') 
-    results.close()
-    
+            t_div = get_divergence(chr_num, int(start_pos), int(end_pos), true_denominator)
+            hard_div = t_div[0]
+            hard_div_denom = t_div[1]
+            soft_div = t_div[2]
+            soft_div_denom = t_div[3]
+
+            results.write(name + '_ex' + str(j + 1) + '\t' + chr_num + '\t' + strand + '\t' + str(start_pos) + '\t' + str(end_pos) + '\t' + str(hard_div) + '\t' + str(soft_div) + '\t' + str(true_denominator) + '\n')
+results.close()
 

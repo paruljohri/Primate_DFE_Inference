@@ -91,7 +91,7 @@ for chr_num in possible_human_chr:
             else:
                 is_callable = 'N'
                 
-            to_join_list = [position, v_nuc, v_h_nuc, v_h_m_nuc, ancestral, is_diverged, is_callable]
+            to_join_list = [position, v_nuc, v_h_nuc, v_h_m_nuc, h_nuc, ancestral, is_diverged, is_callable]
             output_line = '\t'.join(to_join_list) + '\n'
             output_file.write(output_line)
                         
