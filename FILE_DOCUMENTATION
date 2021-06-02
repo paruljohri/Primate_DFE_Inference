@@ -1,230 +1,265 @@
 *If not mentioned to be on Google Drive, the file should be on this GitHub repository
-**All Python scripts are meant for use in Python 3
+** All Python (‘.py’) scripts are contained in the folder “scripts”
+***All Python scripts are meant for use in Python 3
 
-Human coordinate conversion from hg19 to hg38:
+
+
+
+
+Human coordinate conversion from hg19 to hg38 (all files in this section are in the folder “human_coordinate_conversion_from_hg19_to_hg38” unless noted otherwise)
+
 GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab
-  File containing positional information about all 465 initial exons that Parul had identified in GRCh37 / hg19 coordinates. This is the file we started the project with and used to find homologous regions in chimps and vervets. 
+	File containing positional information about all 465 initial exons that Parul had identified in GRCh37 / hg19 coordinates. This is the file we started the project with and used to find homologous regions in chimps and vervets. 
 exons_hg19.txt
-  Contains the start and end positions of the exons for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
+	Contains the start and end positions of the exons for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
 exons_hg38.txt
-  Contains the converted start and end positions of the exons for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
+	Contains the converted start and end positions of the exons for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
 intergenic_5p_hg19.txt
-  Contains the start and end positions of the 5’ intergenic regions for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
+	Contains the start and end positions of the 5’ intergenic regions for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
 intergenic_5p_hg38.txt
-  Contains the converted start and end positions of the 5’ intergenic regions for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file. 
+	Contains the converted start and end positions of the 5’ intergenic regions for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file. 
 intergenic_5p_hg19.txt
-  Contains the start and end positions of the 3’ intergenic regions for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
+	Contains the start and end positions of the 3’ intergenic regions for the hg19 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file.
 intergenic_5p_hg38.txt
-  Contains the converted start and end positions of the 3’ intergenic regions for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file. 
+	Contains the converted start and end positions of the 3’ intergenic regions for the hg38 assembly for all 465 regions detailed in the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” file. Listings are in the same order as they are given in that file. 
 hg19_to_hg38_conversion.xlsx
-  This Excel file was meant as a way for me to line all of converted positions in the previous files discussed that Susanne had sent so that I could convert all of the hg19 coordinates we had for the 465 starting regions into hg38 coordinates. It contains 4 tabs. The first, the “Virgin hg19” is essentially just a copying of the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” information into an Excel spreadsheet so that I could align everything. The second tab, “test”, just has basic calculations to see what how many base pairs each region had been repositioned in the conversion from hg19 to hg38. I then applied these changes to the hg19 recombination positions as well so that I could get the recombination start and stop positions in hg38 too. The third tab, the “Edited hg38” has all of the positional information replaced with the hg38 exon, 5’ intergenic, and 3’ intergenic positions provided by Susanne. The fourth tab, the “Edited hg38 w 3 lines removed” is the same as the “Edited hg38” tab with three lines (exons) removed). According to Susanne, in the process of converting all the exonic and intergenic regions from hg19 to hg39, (quote)
-  “intergenic_5p:
-  I removed chr2:110107393-110259079 and chr17:62401206-62461566 as they
-  do not have a good match in hg38.
-  intergenic_3p:
-  I removed chr10:17842867-18098331 as this region was split in hg38.”
-  Thus, these regions are removed, leaving us with 462 human regions in the hg38 coordinates, down from the original 465 regions. Unfortunately, for simplicity in indexing in future scripts, the three problematic exons are kept in consideration for most of the rest of the pipeline and then removed from final consideration eventually. One is removed in the homologous exon finding step, and the other two are removed in the final filtering step. Additionally, I added one bp to the total exon lengths as, as far I can tell, the exon lengths given in “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” did not account for the end exon actually contributing to the total length (i.e. if exon went from 10 – 20, it was given as a length of 10 but changed to a length of 11).
+	This Excel file was meant as a way for me to line all of converted positions in the previous files discussed that Susanne had sent so that I could convert all of the hg19 coordinates we had for the 465 starting regions into hg38 coordinates. It contains 4 tabs. The first, the “Virgin hg19” is essentially just a copying of the “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” information into an Excel spreadsheet so that I could align everything. The second tab, “test”, just has basic calculations to see what how many base pairs each region had been repositioned in the conversion from hg19 to hg38. I then applied these changes to the hg19 recombination positions as well so that I could get the recombination start and stop positions in hg38 too. The third tab, the “Edited hg38” has all of the positional information replaced with the hg38 exon, 5’ intergenic, and 3’ intergenic positions provided by Susanne. The fourth tab, the “Edited hg38 w 3 lines removed” is the same as the “Edited hg38” tab with three 
+	lines (exons) removed). According to Susanne, in the process of converting all the exonic and intergenic regions from hg19 to hg39, (quote)
+	“intergenic_5p:
+	I removed chr2:110107393-110259079 and chr17:62401206-62461566 as they
+	do not have a good match in hg38.
+
+	intergenic_3p:
+	I removed chr10:17842867-18098331 as this region was split in hg38.”
+
+	Thus, these regions are removed, leaving us with 462 human regions in the hg38 coordinates, down from the original 465 regions. Unfortunately, for simplicity in indexing in future scripts, the three problematic exons are kept in consideration for most of the rest of the pipeline and then removed from final consideration eventually. One is removed in the homologous exon finding step, and the other two are removed in the final filtering step. Additionally, I added one bp to the total exon lengths as, as far I can tell, the exon lengths given in “GRCh37_exon2-6kb_CNE500_rec_numbp50_final_div.tab” did not account for the end exon actually contributing to the total length (i.e. if exon went from 10 – 20, it was given as a length of 10 but changed to a length of 11).
 converted_hg38.txt
-  This is just a text file with all of the information copied from the “Edited hg38” tab in the “hg19_to_hg38_conversion.xlsx” file copied into it.
+	This is just a text file with all of the information copied from the “Edited hg38” tab in the “hg19_to_hg38_conversion.xlsx” file copied into it.
 converted_hg38_with_3_lines_removed.txt
-  This is just a text file with all of the information copied from the “Edited hg38 w 3 lines removed” tab in the “hg19_to_hg38_conversion.xlsx” file copied into it.
+	This is just a text file with all of the information copied from the “Edited hg38 w 3 lines removed” tab in the “hg19_to_hg38_conversion.xlsx” file copied into it.
 
 
 
-Initial findings for chimpanzee and vervet regions that are homologous to the identified human regions:
+
+
+Initial findings for chimpanzee and vervet regions that are homologous to the identified human regions (all files besides Python scripts in this section are in the folder “find_initial_homologous_exons” unless noted otherwise)
+
 human_exons_hg38.txt
-  A list of positions for 444 human exons (GRCH38 assembly) that are homologous with the chimp and vervet exons listed in the “human_exons_pt2.txt” and “human_exons_chlSab2.txt” files respectively. While there were 462 human exons to begin this conversion with, Susanne was only able to find 444 of the 462 to be homologous with the other species.
+	A list of positions for 444 human exons (GRCH38 assembly) that are homologous with the chimp and vervet exons listed in the “human_exons_pt2.txt” and “human_exons_chlSab2.txt” files respectively. While there were 462 human exons to begin this conversion with, Susanne was only able to find 444 of the 462 to be homologous with the other species.
 human_exons_pt2.txt
-  A list of positions for 444 chimp exons (PanTro2 assembly) that are homologous with the human and vervet exons listed in the “human_exons_hg38.txt” and “human_exons_chlSab2.txt” files respectively. 
+	A list of positions for 444 chimp exons (PanTro2 assembly) that are homologous with the human and vervet exons listed in the “human_exons_hg38.txt” and “human_exons_chlSab2.txt” files respectively. 
 human_exons_chlSab2.txt 
-  A list of positions for 444 vervet exons (ChlSab2 assembly) that are homologous with the human and chimp exons listed in the “human_exons_hg38.txt” and “human_exons_pt2.txt” files respectively. 
+	A list of positions for 444 vervet exons (ChlSab2 assembly) that are homologous with the human and chimp exons listed in the “human_exons_hg38.txt” and “human_exons_pt2.txt” files respectively. 
 parul_to_susanne_human_exon_matching.xlsx
-  While we had 465 human exons to work with, Susanne found only 444 regions in chimps and vervets that were homologous. However, in the human coordinates she provided in the “human_exons_hg38.txt” file, she did not include name for any of the exons listed. Thus, to find out with of the original 465 these 444 lined up with, I had to do it by hand in Excel with this file. It contains 3 tabs. The first, “WITH unmatched lines” involves me matching up the 444 lines given in the “human_exons_hg38.txt” file with the 465 lines we had from the “converted_hg38.txt” by eye based on the exon positions. I highlighted pairs where either the exon’s start, end, or both positions between the exons from the list of 462 and the exon from the list of 444. While I didn’t actually do anything with this information, instead retaining the positions of the exons from the original 465 list at the end and for the remainder of the project, it is interesting to note and may be something to look at should anyone in the future ever suspect that there may have been an issue at this step that they need to go back and rectify. In the second tab, “Removed lines”, I just removed the 21 lines where there was no matching exon between the 465 list and 444 list. The third tab, “Final” has me removing the highlights and taping the exon position information and associated recombination and divergence information you may have seen off to the side behind a black line in the other two tabs back together. This would allow me to then copy this information back into text file with ease. Note that this information also includes the positions for these exons in the original hg19 assembly in case they may be needed.
+	While we had 465 human exons to work with, Susanne found only 444 regions in chimps and vervets that were homologous. However, in the human coordinates she provided in the “human_exons_hg38.txt” file, she did not include name for any of the exons listed. Thus, to find out with of the original 465 these 444 lined up with, I had to do it by hand in Excel with this file. It contains 3 tabs. The first, “WITH unmatched lines” involves me matching up the 444 lines given in the “human_exons_hg38.txt” file with the 465 lines we had from the “converted_hg38.txt” by eye based on the exon positions. I highlighted pairs where either the exon’s start, end, or both positions between the exons from the list of 462 and the exon from the list of 444. While I didn’t actually do anything with this information, instead retaining the positions of the exons from the original 465 list at the end and for the remainder of the project, it is interesting to note and may be something to look at should anyone in the future ever suspect 	that there may have been an issue at this step that they need to go back and rectify. In the second tab, “Removed lines”, I just removed the 21 lines where there was no matching exon between the 465 list and 444 list. The third tab, “Final” has me removing the highlights and taping the exon position information and associated recombination and divergence information you may have seen off to the side behind a black line in the other two tabs back together. This would allow me to then copy this information back into text file with ease. Note that this information also includes the positions for these exons in the original hg19 assembly in case they may be needed.
 homolgous_human_exons.txt
-  This is just a text file with all of the information copied from the “Final” tab in the “parul_to_susanne_human_exon_matching.xlsx” file copied into it. 
+	This is just a text file with all of the information copied from the “Final” tab in the “parul_to_susanne_human_exon_matching.xlsx” file copied into it. 
 homologous_exon_finder.py
-  This is a Python script designed to find specific chimp and vervet exons that are contained within Susanne’s given homologous regions, thus allowing us to find sets of homologous exons wherein the human, chimp, and vervet exons are certain to be homologous. It first reads in the positions given by Susanne in the “human_exons_human.txt”, “human_exons_pt2.txt”, and “human_exons_chlSab2.txt” files. It then reads in all chimp and vervet exons from their respective UCSC exon annotation files. With all of this information, it begins to go through each chimp and vervet region given by Susanne. This region is then checked against every single exon in the same chromosome according to the annotation looking for exons with either the same start position (in actuality with a start of 1bp further downstream likely due to an indexing change somewhere along the line, so, for example, 53 in the annotation would be a match to a given position by Susanne of 52) or the same end position (which took exact positional matches). This process is done independently for both chimps and vervets, giving you the exon that is found for each of those regions. For both species, there were 444 regions from Susanne to check this against, and thus a maximum of 444 possible matching exons in both chimps and vervets. However, as you will see, not all 444 regions have matches for both species. After all matching regions for both species are found, the script checks to see which regions have matches in both species to the homologous human region, and then outputs these. The way this script is set up, it finds 248 exons that are homologous between all three species, but alterations to the finding process could potentially change this amount. 
+	This is a Python script designed to find specific chimp and vervet exons that are contained within Susanne’s given homologous regions, thus allowing us to find sets of homologous exons wherein the human, chimp, and vervet exons are certain to be homologous. It first reads in the positions given by Susanne in the “human_exons_human.txt”, “human_exons_pt2.txt”, and “human_exons_chlSab2.txt” files. It then reads in all chimp and vervet exons from their respective UCSC exon annotation files. With all of this information, it begins to go through each chimp and vervet region given by Susanne. This region is then checked against every single exon in the same chromosome according to the annotation looking for exons with either the same start position (in actuality with a start of 1bp further downstream likely due to an indexing change somewhere along the line, so, for example, 53 in the annotation would be a match to a given position by Susanne of 52) or the same end position (which took exact positional matches). 
+	This process is done independently for both chimps and vervets, giving you the exon that is found for each of those regions. For both species, there were 444 regions from Susanne to check this against, and thus a maximum of 444 possible matching exons in both chimps and vervets. However, as you will see, not all 444 regions have matches for both species. After all matching regions for both species are found, the script checks to see which regions have matches in both species to the homologous human region, and then outputs these. The way this script is set up, it finds 248 exons that are homologous between all three species, but alterations to the finding process could potentially change this amount. 
 Chimpanzee UCSC exon annotation (On Google Drive in the “chimp_UCSC_annotations” folder)
-  These files contain information about all known genes, and the exons in those genes, in chimpanzees with coordinates given for the PanTro2 assembly. File names are given as panTro2_chr${chimp chromosome number}.ensGenes.txt for individual chromosomes. There is also a file titled panTro2.ensGenes.txt that contains all of the information in individual chromosome files compiled into a single file for convenience. 
+	These files contain information about all known genes, and the exons in those genes, in chimpanzees with coordinates given for the PanTro2 assembly. File names are given as panTro2_chr${chimp chromosome number}.ensGenes.txt for individual chromosomes. There is also a file titled panTro2.ensGenes.txt that contains all of the information in individual chromosome files compiled into a single file for convenience. 
 Vervet UCSC exon annotation (On Google Drive in the “vervet_UCSC_annotations” folder)
-  These files contain information about all known genes, and the exons in those genes, in vervets with coordinates given for the ChlSab2 assembly. File names are given as chlSab2.ensGenes.chr${vervet chromosome number}.txt for individual chromosomes. There is also a file titled chlSab2.ensGenes.txt that contains all of the information in individual chromosome files compiled into a single file for convenience. 
+	These files contain information about all known genes, and the exons in those genes, in vervets with coordinates given for the ChlSab2 assembly. File names are given as chlSab2.ensGenes.chr${vervet chromosome number}.txt for individual chromosomes. There is also a file titled chlSab2.ensGenes.txt that contains all of the information in individual chromosome files compiled into a single file for convenience. 
 chimp_homologous_exons_formatted.txt
-  This is an output file from the “homologous_exon_finder.py” script. It contains information about the chimp exons that are homologous with the some of the 444 human exons based on the chimp UCSC exon annotation.
+	This is an output file from the “homologous_exon_finder.py” script. It contains information about the chimp exons that are homologous with the some of the 444 human exons based on the chimp UCSC exon annotation.
 chimp_homologous_exons.txt
-  This is an output file from the “homologous_exon_finder.py” script. It is the same as the “chimp_homolgous_exons_formatted.txt” file, but rather than just a name, chromosome, and start and end positions of the exon, the entire line from the chimp UCSC annotation containing the homologous exon is pulled out and printed.
+	This is an output file from the “homologous_exon_finder.py” script. It is the same as the “chimp_homolgous_exons_formatted.txt” file, but rather than just a name, chromosome, and start and end positions of the exon, the entire line from the chimp UCSC annotation containing the homologous exon is pulled out and printed.
 chimp_homologous_exons_with_relevant_exons.txt
-  This is an output file from the “homologous_exon_finder.py” script. It is the same as the “chimp_homolgous_whole_annotation_line.txt” file, but also contains which exon in the list of given exons in that line was actual found to be the match.
+	This is an output file from the “homologous_exon_finder.py” script. It is the same as the “chimp_homolgous_whole_annotation_line.txt” file, but also contains which exon in the list of given exons in that line was actual found to be the match.
 vervet_homologous_exons_formatted.txt
-  This is an output file from the “homologous_exon_finder.py” script. It contains information about the vervet exons that are homologous with the some of the 444 human exons based on the vervet UCSC exon annotation.
+	This is an output file from the “homologous_exon_finder.py” script. It contains information about the vervet exons that are homologous with the some of the 444 human exons based on the vervet UCSC exon annotation.
 vervet_homologous_exons.txt
-  This is an output file from the “homologous_exon_finder.py” script. It is the same as the “vervet_homolgous_exons_formatted.txt” file, but rather than just a name, chromosome, and start and end positions of the exon, the entire line from the vervet UCSC annotation containing the homologous exon is pulled out and printed.
+	This is an output file from the “homologous_exon_finder.py” script. It is the same as the “vervet_homolgous_exons_formatted.txt” file, but rather than just a name, chromosome, and start and end positions of the exon, the entire line from the vervet UCSC annotation containing the homologous exon is pulled out and printed.
 vervet_homologous_exons_with_relevant_exons.txt
-  This is an output file from the “homologous_exon_finder.py” script. It is the same as the “vervet _homolgous_whole_annotation_line.txt” file, but also contains which exon in the list of given exons in that line was actual found to be the match.
+	This is an output file from the “homologous_exon_finder.py” script. It is the same as the “vervet _homolgous_whole_annotation_line.txt” file, but also contains which exon in the list of given exons in that line was actual found to be the match.
 all_homo_exons_reference_exons_only.txt 
-  This is an output file from the “homologous_exon_finder.py” script. It contains positional information for human, chimp, and vervet exons that are homologous across all three species. 248 homologous exons were found by this analysis of simply comparing which vervet and chimp exons in their respective UCSC annotations had matching start or end positions with the homologous coordinates given by Susanne in “human_exons_pt2.txt” and “human_exons_chlSab2.txt”. These exons would be use as a baseline to then add additional filters to thin them further and insure they are all truly homologous.
+	This is an output file from the “homologous_exon_finder.py” script. It contains positional information for human, chimp, and vervet exons that are homologous across all three species. 248 homologous exons were found by this analysis of simply comparing which vervet and chimp exons in their respective UCSC annotations had matching start or end positions with the homologous coordinates given by Susanne in “human_exons_pt2.txt” and “human_exons_chlSab2.txt”. These exons would be use as a baseline to then add additional filters to thin them further and insure they are all truly homologous.
 248_homo_exons_reference_exons_only.xlsx
-  An Excel file containing all of the barebones information about exons (including  in the “all_homo_exons_reference_exons_only.txt” file. This file serves as a baseline going forward to add in additional information like intergenic lengths, recombination rates, divergence, etc., I would just output those values to a text file and then manually add the information in as new columns in an Excel file like this. Due to programming inexperience and ignorance at the time, many of the scripts using it and other future variants like it going forward rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things. Sorry for any inconvenience it causes!
+	An Excel file containing all of the barebones information about exons (including  in the “all_homo_exons_reference_exons_only.txt” file. This file serves as a baseline going forward to add in additional information like intergenic lengths, recombination rates, divergence, etc., I would just output those values to a text file and then manually add the information in as new columns in an Excel file like this. Due to programming inexperience and ignorance at the time, many of the scripts using it and other future variants like it going forward rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things. Sorry for any inconvenience it causes!
 20_exon_eye_check.xlsx
-  An Excel spreadsheet made to check and see whether or not the exon positions we had for the homologous exons for all 3 species really matched up with real genes by comparing them against the positions listed for those genes on Ensembl. I checked 20 out of the 248.
+	An Excel spreadsheet made to check and see whether or not the exon positions we had for the homologous exons for all 3 species really matched up with real genes by comparing them against the positions listed for those genes on Ensembl. I checked 20 out of the 248.
 
 
 
-Calculate intergenic lengths: 
+
+
+Calculate intergenic lengths (all files besides Python scripts in this section are in the folder “calculate_intergenic_lengths” unless noted otherwise)
+
 get_intergenic_info_human.py
-  This Python script is designed to find the human intergenic region lengths for all homologous exons. While these were known from the get-go, now that we are only focusing on the 248 found to be homologous with vervets and chimps, we first need to pull out the lengths for those 248. Additionally, Parul had originally calculated these to span from one exon all the way to the next exon. However, for our purposes, we are considering the flanking intergenic region for an exon to only extend from that exon to the midpoint between it and the next exon. Therefore, the 248 intergenic lengths also need to be cut in half.
+	This Python script is designed to find the human intergenic region lengths for all homologous exons. While these were known from the get-go, now that we are only focusing on the 248 found to be homologous with vervets and chimps, we first need to pull out the lengths for those 248. Additionally, Parul had originally calculated these to span from one exon all the way to the next exon. However, for our purposes, we are considering the flanking intergenic region for an exon to only extend from that exon to the midpoint between it and the next exon. Therefore, the 248 intergenic lengths also need to be cut in half.
 human_homo_intergenic_lengths.txt
-  This is an output file from the “get_intergenic_info_human.py” script. Contains information about the length, start, and stop positions of the now-halved flanking 5’ and 3’ intergenic regions around the 248 identified human homologous exons.
+	This is an output file from the “get_intergenic_info_human.py” script. Contains information about the length, start, and stop positions of the now-halved flanking 5’ and 3’ intergenic regions around the 248 identified human homologous exons.
 get_intergenic_info_chimp.py
-  This Python script calculates the lengths of flanking 5’ and 3’ intergenic regions around both the identified homologous exons, as well as for all exons, specifically for chimps.
+	This Python script calculates the lengths of flanking 5’ and 3’ intergenic regions around both the identified homologous exons, as well as for all exons, specifically for chimps.
 chimp_homo_intergenic_lengths.txt
-  This is an output file from the “get_intergenic_info_chimp.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around the 248 identified chimp homologous exons.
-chimp_all_intergenic_lengths.txt
-  This is an output file from the “get_intergenic_info_chimp.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around ALL listed exons in the chimp UCSC annotation. Used for analyzing the distributions of all chimp intergenic lengths.
+	This is an output file from the “get_intergenic_info_chimp.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around the 248 identified chimp homologous exons.
+chimp_all_intergenic_lengths.txt (zipped)
+	This is an output file from the “get_intergenic_info_chimp.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around ALL listed exons in the chimp UCSC annotation. Used for analyzing the distributions of all chimp intergenic lengths.
 get_intergenic_info_vervet.py
-  This Python script calculates the lengths of flanking 5’ and 3’ intergenic regions around both the identified homologous exons, as well as for all exons, specifically for vervets.
+	This Python script calculates the lengths of flanking 5’ and 3’ intergenic regions around both the identified homologous exons, as well as for all exons, specifically for vervets.
 vervet_homo_intergenic_lengths.txt
-  This is an output file from the “get_intergenic_info_vervet.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around the 248 identified vervet homologous exons.
-vervet_all_intergenic_lengths.txt
-  This is an output file from the “get_intergenic_info_vervet.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around ALL listed exons in the vervet UCSC annotation. Used for analyzing the distributions of all vervet intergenic lengths.
+	This is an output file from the “get_intergenic_info_vervet.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around the 248 identified vervet homologous exons.
+vervet_all_intergenic_lengths.txt (zipped)
+	This is an output file from the “get_intergenic_info_vervet.py” script. Contains information about the length, start, and stop positions of the flanking 5’ and 3’ intergenic regions around ALL listed exons in the vervet UCSC annotation. Used for analyzing the distributions of all vervet intergenic lengths.
 248_homo_exons_reference_with_intergenic_lengths.xlsx
-  A variation of “248_homo_exons_reference_exons_only.xlsx” that has the calculated intergenic lengths for the 248 homologous exons in the above files inserted by hand as new columns.
+	A variation of “248_homo_exons_reference_exons_only.xlsx” that has the calculated intergenic lengths for the 248 homologous exons in the above files inserted by hand as new columns.
 248_homo_exons_reference_with_intergenic_lengths.txt
-  Contains all of the information in “248_homo_exons_reference_with_intergenic_lengths.xlsx” in a text file format. Due to programming inexperience and ignorance at the time, many of the scripts using it rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things.
+	Contains all of the information in “248_homo_exons_reference_with_intergenic_lengths.xlsx” in a text file format. Due to programming inexperience and ignorance at the time, many of the scripts using it rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things.
 
 
 
-Vervet alignment:
+
+
+Vervet alignment (all files besides Python scripts in this section are in the folder “vervet_alignment” unless noted otherwise)
+
 13 primates EPO files (On Google Drive in the “13_primates_EPO_files” folder)
-  Files containing alignments for 13 different primate species, including humans, vervets, and marmosets. These were used to align the vervet, ancestral human-vervet, and ancestral human-vervet-marmoset, and human sequences and then calculate the true ancestral state at all possible positions in the vervet genome from the first 3. By comparing the vervet, human, and ancestral nucleotide at every site across a region, one can obtain a divergence value. Unlike with chimps, this was necessary to do as the divergence table Susanne provided us with had no nucleotide information. While it had positions that were supposedly diverged, we needed the nucleotide information too. File names are given as “13_primates.epo.${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.maf”
+	Files containing alignments for 13 different primate species, including humans, vervets, and marmosets. These were used to align the vervet, ancestral human-vervet, and ancestral human-vervet-marmoset, and human sequences and then calculate the true ancestral state at all possible positions in the vervet genome from the first 3. By comparing the vervet, human, and ancestral nucleotide at every site across a region, one can obtain a divergence value. Unlike with chimps, this was necessary to do as the divergence table Susanne provided us with had no nucleotide information. While it had positions that were supposedly diverged, we needed the nucleotide information too. File names are given as “13_primates.epo.${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.maf”
 find_vervet_alignments.py
-  A Python script that goes through each of the above mentioned 13 primates EPO files. Using a module from BioPython called Phylo, it determines which of the listed ancestral sequences in the given tree for an alignment block correspond to the human-vervet ancestral and human-vervet-marmoset ancestral sequences. It then aligns these four sequences, and for every vervet position that is given in the files to be aligned, it outputs that vervet position, the vervet nucleotide, and the nucleotides in the other three sequences that align to it.
+	A Python script that goes through each of the above mentioned 13 primates EPO files. Using a module from BioPython called Phylo, it determines which of the listed ancestral sequences in the given tree for an alignment block correspond to the human-vervet ancestral and human-vervet-marmoset ancestral sequences. It then aligns these four sequences, and for every vervet position that is given in the files to be aligned, it outputs that vervet position, the vervet nucleotide, and the nucleotides in the other three sequences that align to it.
 Post alignment files (On Google Drive in the “reformatted_aligns” folder)
-  Using the script “find_vervet_alignments.py”, I went through each of the alignment files, aligned the 4 sequences described above, and created an output file. These files consist of the nucleotides for each of the 4 sequences in regards to the vervet sequence. So, in the first column, “position”, the chromosome refers to the vervet position. The files are named as “reformatted_alignment_chr${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.txt”. For file size purposes, these output files still remained split into multiple parts for each chromosome as they were initially. Additionally, for the sake of simplicity, the positions listed are in the same order as they are given for vervets in the alignment file. Thus, the positions may not be in order. For example, if the first alignment listing in one of the human chromosome 1 files corresponds to the vervet region 101 – 200, and the last listing corresponds to the vervet region 1 - 100, 101 – 200 will be listed in these output files before 1 – 100.
+	Using the script “find_vervet_alignments.py”, I went through each of the alignment files, aligned the 4 sequences described above, and created an output file. These files consist of the nucleotides for each of the 4 sequences in regards to the vervet sequence. So, in the first column, “position”, the chromosome refers to the vervet position. The files are named as “reformatted_alignment_chr${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.txt”. For file size purposes, these output files still remained split into multiple parts for each chromosome as they were initially. Additionally, for the sake of simplicity, the positions listed are in the same order as they are given for vervets in the alignment file. Thus, the positions may not be in order. For example, if the first alignment listing in one of the human chromosome 1 files corresponds to the vervet region 101 – 200, and the last listing corresponds to the vervet region 1 - 100, 101 – 200 will be 
+	listed in these output files before 1 – 100.
 add_ancestral_and_masking_info.py
-  This is a Python script designed to add information to the output files created in the "find_vervet_alignments.py" script. It goes through each of those files and makes a copy while also adding new columns that include the calculated ancestral allele, whether that vervet position is diverged, and whether or not that site is callable from the masking information.
+	This is a Python script designed to add information to the output files created in the "find_vervet_alignments.py" script. It goes through each of those files and makes a copy while also adding new columns that include the calculated ancestral allele, whether that vervet position is diverged, and whether or not that site is callable from the masking information.
 Post alignment files with ancestral alleles and callability (On Google Drive in the “reformatted_aligns_with_callability” folder)
-  These files are outputs from the “add_ancestral_and_masking_info.py” script that contain information detailed in the description of that script. The files are named as “reformatted_alignment_with_callability_chr${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.txt”
+	These files are outputs from the “add_ancestral_and_masking_info.py” script that contain information detailed in the description of that script. The files are named as “reformatted_alignment_with_callability_chr${human chromosome number}_${part X as each chromosome is split into multiple files for size purposes}.txt”
 find_sites_that_differ.py
-  For various purposes, I created a Python script that goes through these post alignment files and finds and outputs all positions within the post alignment files where one or all of the three nucleotides needed to calculate the ancestral nucleotide are different.
+	For various purposes, I created a Python script that goes through these post alignment files and finds and outputs all positions within the post alignment files where one or all of the three nucleotides needed to calculate the ancestral nucleotide are different.
 all_sites_that_differ.txt (On Google Drive)
-  Using the script “find_sites_that_differ.py”, I went through each of the post alignment files, found all vervet positions where the human and vervet nucleotides differed, and compiled the positions where that was the case into a single file. This file is used in the calculation of vervet divergence.
+	Using the script “find_sites_that_differ.py”, I went through each of the post alignment files, found all vervet positions where the human and vervet nucleotides differed, and compiled the positions where that was the case into a single file. This file is used in the calculation of vervet divergence.
 find_gene_duplicates_and_incomplete_alignments.py
-  This is a Python script designed to output various characteristics about all of the aligned regions that encompass the 248 homologous vervet exon regions. It works by taking the start and end position of the exon, finds which vervet sequence(s) these exons are a part of in the alignment files (13_primates.epo files), and then outputs the start and end positions of those vervet regions, the start and end positions of the corresponding aligned human sequences, and the number of human, vervet, and marmoset listings in that alignment group. Note that some of the information output by this script goes unused, but I see no region to spend time changing it if I can easily extract the particular things I need.
+	This is a Python script designed to output various characteristics about all of the aligned regions that encompass the 248 homologous vervet exon regions. It works by taking the start and end position of the exon, finds which vervet sequence(s) these exons are a part of in the alignment files (13_primates.epo files), and then outputs the start and end positions of those vervet regions, the start and end positions of the corresponding aligned human sequences, and the number of human, vervet, and marmoset listings in that alignment group. Note that some of the information output by this script goes unused, but I see no region to spend time changing it if I can easily extract the particular things I need.
 248_exon_alignment_check.txt
-  This is an output file from the “find_gene_duplicates_and_incomplete_alignments.py” script containing the information detailed in the description of that script.
+	This is an output file from the “find_gene_duplicates_and_incomplete_alignments.py” script containing the information detailed in the description of that script.
 
 
 
-Calculate divergence: 
+
+
+Calculate divergence (all files besides Python scripts in this section are in the folder “calculate_divergence” unless noted otherwise)
+
 divergent_final_pt2.txt (On Google Drive in the “chimp_divergent” folder)
-  A file containing all the diverged sites between humans and chimps as well as the corresponding human, chimp, and ancestral nucleotides at those positions.
+	A file containing all the diverged sites between humans and chimps as well as the corresponding human, chimp, and ancestral nucleotides at those positions.
 final_10ind_divergent_AGM.txt (On Google Drive in the “vervet_divergent” folder)
-  A file containing all the diverged sites between humans and vervets. However, it does not contain the corresponding human, chimp, and ancestral nucleotides at those positions and thus was not used in the calculation of vervet divergence. Instead, the “all_sites_that_differ.txt” file was used to calculate vervet divergence.
+	A file containing all the diverged sites between humans and vervets. However, it does not contain the corresponding human, chimp, and ancestral nucleotides at those positions and thus was not used in the calculation of vervet divergence. Instead, the “all_sites_that_differ.txt” file was used to calculate vervet divergence.
 find_divergence_chimp.py
-  This is a Python script that calculates divergence rate values for chimps. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
+	This is a Python script that calculates divergence rate values for chimps. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
 chimp_homo_exons_divergence.txt
-  This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for all 248 homologous chimp exons.
-chimp_all_exons_divergence.txt
-  This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for all exons in the chimp UCSC annotation. 
+	This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for all 248 homologous chimp exons.
+chimp_all_exons_divergence.txt (zipped)
+	This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for all exons in the chimp UCSC annotation. 
 chimp_homo_intergenic_divergence.txt
-  This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous chimp exons.
+	This is an output file from the “find_divergence_chimp.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous chimp exons.
 find_divergence_vervet_exons.py
-  This is a Python script that calculates divergence rate values for vervet exons specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
+	This is a Python script that calculates divergence rate values for vervet exons specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
 vervet_homo_exons_divergence.txt
-  This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all 248 homologous vervet exons.
-vervet_all_exons_divergence.txt
-  This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all exons in the vervet UCSC annotation. 
+	This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all 248 homologous vervet exons.
+vervet_all_exons_divergence.txt (zipped)
+	This is an output file from the “find_divergence_vervet_exons.py” script. It contains divergence values for all exons in the vervet UCSC annotation. 
 find_divergence_vervet_intergenic.py
-  This is a Python script that calculates divergence rate values for vervet intergenic regions specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
+	This is a Python script that calculates divergence rate values for vervet intergenic regions specifically. Whereas most scripts that have separate "find x for chimps" and "find x for vervets" versions have none or extremely minor differences, these chimp and vervet divergence calculation scripts are substantially different due to how they go about calculating whether or not a site is diverged.
 vervet_homo_intergenic_divergence.txt
-  This is an output file from the “find_divergence_vervet_intergenic.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous vervet exons.
+	This is an output file from the “find_divergence_vervet_intergenic.py” script. It contains divergence values for the flanking 5’ and 3’ intergenic regions around the 248 homologous vervet exons.
 pull_out_intergenic_aligned_sites.py
-  This is a Python script that scans through all of the post alignment files with the ancestral allele already calculated and the callability of that site already calculated. Any sites that fall within any of the 5' or 3' intergenic regions flanking the 248 identified homologous vervet exons are output. This is done for two reasons. The first is that, unlike for the exonic regions, if part or all of a flanking intergenic region is missing alignment data, the entire exon set does not get immediately thrown out. Thus, we need to know what sites are or are not present in the alignment. This requires that all sites in a region be read in. Second, rather than read through all of the reformatted alignment files which would take forever and consume an enormous amount of memory, this file is created to be much easier and quicker to read in.
+	This is a Python script that scans through all of the post alignment files with the ancestral allele already calculated and the callability of that site already calculated. Any sites that fall within any of the 5' or 3' intergenic regions flanking the 248 identified homologous vervet exons are output. This is done for two reasons. The first is that, unlike for the exonic regions, if part or all of a flanking intergenic region is missing alignment data, the entire exon set does not get immediately thrown out. Thus, we need to know what sites are or are not present in the alignment. This requires that all sites in a region be read in. Second, rather than read through all of the reformatted alignment files which would take forever and consume an enormous amount of memory, this file is created to be much easier and quicker to read in.
 pull_out_intergenic_aligned_sites.txt (On Google Drive)
-  This is an output file from the “pull_out_intergenic_aligned_sites.py” script.
+	This is an output file from the “pull_out_intergenic_aligned_sites.py” script.
 
 
 
-Calculate recombination 
+
+
+Calculate recombination (all files besides Python scripts in this section are in the folder “calculate_recombination” unless noted otherwise)
+
 Chimp recombination files (On Google Drive in the “chimp_recombination” folder)
-  These files contain recombination rates for the chimp genome. File names are given as chimp_Dec8_Haplotypes_Mar1_chr${chimp chromosome number}_-cleaned.txt for individual chromosomes. 
+	These files contain recombination rates for the chimp genome. File names are given as chimp_Dec8_Haplotypes_Mar1_chr${chimp chromosome number}_-cleaned.txt for individual chromosomes. 
 Vervet recombination files (On Google Drive in the “vervet_recombination” folder)
-  These files contain recombination rates for the vervet genome. File names are given as LDhat_rate_estimates_chr${vervet chromosome number}_cleaned.txt for individual chromosomes. 
+	These files contain recombination rates for the vervet genome. File names are given as LDhat_rate_estimates_chr${vervet chromosome number}_cleaned.txt for individual chromosomes. 
 find_recombination_chimp_weighted_average.py
-  This is a Python script that calculates recombination rate values for chimp regions by taking weighted averages across the various rate windows in the rate map that a region spans.
+	This is a Python script that calculates recombination rate values for chimp regions by taking weighted averages across the various rate windows in the rate map that a region spans.
 chimp_homo_exons_recombination_weighted_average.txt
-  This is an output file from the “find_recombination_chimp_weighted_average.py” script. It contains recombination values for all 248 homologous chimp regions using weighted averages. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
-chimp_all_recombination_weighted_average.txt
-  This is an output file from the “find_recombination_chimp_weighted_average.py” script. It contains recombination values for all exons in the chimp UCSC annotation using weighted averages.
+	This is an output file from the “find_recombination_chimp_weighted_average.py” script. It contains recombination values for all 248 homologous chimp regions using weighted averages. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
+chimp_all_exons_recombination_weighted_average.txt (zipped)
+	This is an output file from the “find_recombination_chimp_weighted_average.py” script. It contains recombination values for all exons in the chimp UCSC annotation using weighted averages.
 find_recombination_chimp_interpolation.py
-  This is a Python script that calculates recombination rate values for chimps using linear interpolation with the rate map listings closest to the start and end of the given region.
+	This is a Python script that calculates recombination rate values for chimps using linear interpolation with the rate map listings closest to the start and end of the given region.
 chimp_homo_exons_recombination_interpolation.txt
-  This is an output file from the “find_recombination_chimp_interpolation.py” script. It contains recombination values for all 248 homologous chimp regions using linear interpolation. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
-chimp_all_recombination_interpolation.txt
-  This is an output file from the “find_recombination_chimp_interpolation.py” script. It contains recombination values for all exons in the chimp UCSC annotation using linear interpolation.
+	This is an output file from the “find_recombination_chimp_interpolation.py” script. It contains recombination values for all 248 homologous chimp regions using linear interpolation. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
+chimp_all_exons_recombination_interpolation.txt (zipped)
+	This is an output file from the “find_recombination_chimp_interpolation.py” script. It contains recombination values for all exons in the chimp UCSC annotation using linear interpolation.
 find_recombination_vervet_weighted_average.py
-  This is a Python script that calculates recombination rate values for vervet regions by taking weighted averages across the various rate windows in the rate map that a region spans.
+	This is a Python script that calculates recombination rate values for vervet regions by taking weighted averages across the various rate windows in the rate map that a region spans.
 vervet_homo_exons_recombination_weighted_average.txt
-  This is an output file from the “find_recombination_vervet_weighted_average.py” script. It contains recombination values for all 248 homologous vervet regions using weighted averages. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
-vervet_all_recombination_weighted_average.txt
-  This is an output file from the “find_recombination_vervet_weighted_average.py” script. It contains recombination values for all exons in the vervet UCSC annotation using weighted averages.
+	This is an output file from the “find_recombination_vervet_weighted_average.py” script. It contains recombination values for all 248 homologous vervet regions using weighted averages. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
+vervet_all_exons_recombination_weighted_average.txt (zipped)
+	This is an output file from the “find_recombination_vervet_weighted_average.py” script. It contains recombination values for all exons in the vervet UCSC annotation using weighted averages.
 find_recombination_vervet_interpolation.py
-  This is a Python script that calculates recombination rate values for vervets using linear interpolation with the rate map listings closest to the start and end of the given region.
+	This is a Python script that calculates recombination rate values for vervets using linear interpolation with the rate map listings closest to the start and end of the given region.
 vervet_homo_exons_recombination_interpolation.txt
-  This is an output file from the “find_recombination_vervet_interpolation.py” script. It contains recombination values for all 248 homologous vervet regions using linear interpolation. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
-vervet_all_recombination_interpolation.txt
-  This is an output file from the “find_recombination_vervet_interpolation.py” script. It contains recombination values for all exons in the vervet UCSC annotation using linear interpolation.
+	This is an output file from the “find_recombination_vervet_interpolation.py” script. It contains recombination values for all 248 homologous vervet regions using linear interpolation. Rather than calculate a recombination rate for exons and the flanking intergenic regions separately, the rate was calculated for the entire region containing the exon and both flanking intergenic regions.
+vervet_all_exons_recombination_interpolation.txt (zipped)
+	This is an output file from the “find_recombination_vervet_interpolation.py” script. It contains recombination values for all exons in the vervet UCSC annotation using linear interpolation.
 
 
 
-Exon filters: 
+
+
+Exon filters (all files besides Python scripts in this section are in the folder “exon_filters” unless noted otherwise)
+
+248_homo_exons_reference_all_info.xlsx
+	Contains all of the same information in “248_homo_exons_reference_with_intergenic_lengths.xlsx” with additional information about divergence, recombination, and more. This information was added in by hand. Due to programming inexperience and ignorance at the time, many of the scripts using it rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things.
 248_homo_exons_reference_all_info.txt
-  Contains all of the same information in “248_homo_exons_reference_with_intergenic_lengths.txt” with additional information about divergence, recombination, and more. This information was added in by hand. Due to programming inexperience and ignorance at the time, many of the scripts using it rely on the order of the columns already there to stay the same, so if anyone plans to make alterations to the order of the columns or add/remove some, be sure to update the relevant scripts with new column numbers for things.
-ensembl_biomart_homo_exons_chimp.txt 
-  From Ensembl’s BioMart tool, contains information about all homologous exons between humans and chimps, including the homology type, orthology confidence, and gene order conservation (GOC) score. All of these are then used as a filter.
-ensembl_biomart_homo_exons_vervet.txt 
-  From Ensembl’s BioMart tool, contains information about all homologous exons between humans and vervets, including the homology type, orthology confidence, and gene order conservation (GOC) score. All of these are then used as a filter.
+	Contains all of the information in “248_homo_exons_reference_all_info.xlsx” in an text file format.
+ensembl_biomart_homo_exons_chimp.txt (zipped)
+	From Ensembl’s BioMart tool, contains information about all homologous exons between humans and chimps, including the homology type, orthology confidence, and gene order conservation (GOC) score. All of these are then used as a filter.
+ensembl_biomart_homo_exons_vervet.txt (zipped)
+	From Ensembl’s BioMart tool, contains information about all homologous exons between humans and vervets, including the homology type, orthology confidence, and gene order conservation (GOC) score. All of these are then used as a filter.
 thin_homo_exons_with_various_filters.py
-  This is a Python script that works to thin out the 248 homologous exons by applying various filters, leaving us with a new list of exons. The filters themselves are detailed elsewhere like in the script itself and in the workflow document.
+	This is a Python script that works to thin out the 248 homologous exons by applying various filters, leaving us with a new list of exons. The filters themselves are detailed elsewhere like in the script itself and in the workflow document.
 FILTERED_homo_exons_reference_all_info.txt
-  This is an output file from the “thin_homo_exons_with_various_filters.py” script. It contains all of the same information in “248_homo_exons_reference_all_info.txt”, but only contains exons that have passed through all of the filters within the script. This should be the final list of homologous exons used going forward.
+	This is an output file from the “thin_homo_exons_with_various_filters.py” script. It contains all of the same information in “248_homo_exons_reference_all_info.txt”, but only contains exons that have passed through all of the filters within the script. This should be the final list of homologous exons used going forward.
 FILTERED_homo_exons_reference_all_info.xlsx
-  Contains all of the information in “FILTERED_homo_exons_reference_all_info.txt” in an Excel spreadsheet for easier viewing.
+	Contains all of the information in “FILTERED_homo_exons_reference_all_info.txt” in an Excel spreadsheet for easier viewing.
 
 
 
-Graph length, divergence, and recombination correlations and distributions:
+
+
+Graph length, divergence, and recombination correlations and distributions (all files in this section are in the “scripts” folder)
+
 graph_exon_length_correlations.py
-  This is a Python script that is used to graph exon length correlations for the list of homologous exons we have between humans, vervets, and chimps, as well as exon length distributions for all exons for vervets and chimps.
+	This is a Python script that is used to graph exon length correlations for the list of homologous exons we have between humans, vervets, and chimps, as well as exon length distributions for all exons for vervets and chimps.
 graph_intergenic_length_correlations.py
-  This is a Python script that is used to graph intergenic length correlations for the list of homologous exons we have between humans, vervets, and chimps.
+	This is a Python script that is used to graph intergenic length correlations for the list of homologous exons we have between humans, vervets, and chimps.
 graph_recombination_correlations.py
-  This is a Python script that is used to graph recombination rate correlations for the list of homologous exons we have between humans, vervets, and chimps.
+	This is a Python script that is used to graph recombination rate correlations for the list of homologous exons we have between humans, vervets, and chimps.
 graph_recombination_distributions.py
-  This is a Python script that is used to graph recombination distributions for the list of human exons we have identified, as well for all exons in the chimp and vervet UCSC exon annotations.
+	This is a Python script that is used to graph recombination distributions for the list of human exons we have identified, as well for all exons in the chimp and vervet UCSC exon annotations.
 graph_divergence_distributions.py
-  This is a Python script that is used to graph divergence distributions for the list of human exons we have identified, as well for all exons in the chimp and vervet UCSC exon annotations.
+	This is a Python script that is used to graph divergence distributions for the list of human exons we have identified, as well for all exons in the chimp and vervet UCSC exon annotations.
 graph_divergence_correlations.py
-  This is a Python script that is used to graph both exonic and intergenic divergence correlations for the list of homologous exons we have between humans, vervets, and chimps.
+	This is a Python script that is used to graph both exonic and intergenic divergence correlations for the list of homologous exons we have between humans, vervets, and chimps.
 graph_weighted_avg_vs_interpolation_recombination_calc_method_correlations.py
-  This is a Python script that graphs the correlations between the recombination rates calculated for chimps and vervets using the weighted average method and the linear interpolation method.
+	This is a Python script that graphs the correlations between the recombination rates calculated for chimps and vervets using the weighted average method and the linear interpolation method.
 
 
 
-Other files not used/discussed:
+
+
+Other files not used/discussed (all files in this section are on Google Drive)
+
 Human reference genome (On Drive in the “human_reference” folder)
-  Single file for the whole genome, “GRCh38_latest_genomic.fna”
+	Single file for the whole genome, “GRCh38_latest_genomic.fna”
 Chimpanzee reference genome (On Drive in the “chimp_reference” folder)
-  File for each chromosome, “chr${chromosome number}.fa”
+	File for each chromosome, “chr${chromosome number}.fa”
 Polymorphic sites for Vervets (On Drive in the “chimp_polymorphic_sites” folder)
-  Single file for the whole genome, “Mar1_haplotypes_from_Dec8_genotypes.vcf”
+	Single file for the whole genome, “Mar1_haplotypes_from_Dec8_genotypes.vcf”
 panTro2.CpGIslands.txt (On Drive in the “chimp_UCSC_annotations” folder)
 panTro2.SimpleRepeats.txt (On Drive in the “chimp_UCSC_annotations” folder)
 Vervet reference genome (On Drive in the “vervet_reference” folder)
-  Single file for the whole genome, “201604_vervet_EBV.fasta”
+	Single file for the whole genome, “201604_vervet_EBV.fasta”
 Polymorphic sites for Vervets (On Drive in the “vervet_polymorphic_sites” folder)
-  File for each chromosome, “final_10ind_chr${chromosome number}.vcf”
+	File for each chromosome, “final_10ind_chr${chromosome number}.vcf”
 chlSab2.CpGIslands.txt (On Drive in the “vervet_UCSC_annotations” folder)
 chlSab2.SimpleRepeats.txt (On Drive in the “vervet_UCSC_annotations” folder)
-
-
